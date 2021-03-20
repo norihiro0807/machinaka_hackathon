@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+ *  Copyright (c) 2015 The WebRTC project authors. All Rights Reserved.
+ *
+ *  Use of this source code is governed by a BSD-style license
+ *  that can be found in the LICENSE file in the root of the source
+ *  tree.
+-->
+<html lang="jp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>WebRTC - MediaStream Recording</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="container" class="wrapper">
+
+    <video id="local" autoplay playsinline="true" muted></video>
+    <video id="recorded" playsinline loop></video>
+    <div id="arVideo"><p>ここにVR表示</p></div>
+
+    <div class="buttons">
+      <button id="record" disabled>VR開始</button>
+      <button id="play" disabled>インカメ再生</button>
+      <button id="download" disabled>ダウンロード</button>
+    </div>
+
+  <!-- include adapter for srcObject shim -->
+  <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+  <script src="./index.js" async></script>
+  </div>
+</body>
+</html>
