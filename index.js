@@ -14,7 +14,6 @@ const startBtn = document.getElementById("start");
 const recordBtn = document.getElementById("record");
 const playBtn = document.getElementById("play");
 const downloadBtn = document.getElementById("download");
-const arVideo = document.getElementById("arVideo");
 let mediaRecorder;
 let recordedBlobs;
 
@@ -38,6 +37,7 @@ function handleDataAvailable(event) {
 function startRecording() {
   recordedBlobs = [];
   const options = { mimeType: "video/webm;codecs=vp9" };
+  const arVideo = document.getElementById("arjs-video");
 
   try {
     mediaRecorder = new MediaRecorder(window.stream, options);
@@ -47,10 +47,11 @@ function startRecording() {
   }
   
   console.log("Created MediaRecorder", mediaRecorder);
-  recordBtn.textContent = "VR停止";
+  recordBtn.textContent = "録画停止";
   playBtn.disabled = true;
   downloadBtn.disabled = true;
-  arVideo.style.visibility ="visible"
+  arVideo.style.visibility ="visible";
+    recordedVideo.style.visibility ="hidden";
   mediaRecorder.onstop = event => {
     console.log("Recorder stopped: ", event);
   };
@@ -67,7 +68,8 @@ function stopRecording() {
 
 function play(){
   const superBuffer = new Blob(recordedBlobs, { type: "video/webm" });
-    
+
+  const arVideo = document.getElementById("arjs-video");
     
   arVideo.style.visibility = "hidden"
   recordedVideo.style.visibility = "visible"
@@ -79,11 +81,11 @@ function play(){
 }
 
 recordBtn.addEventListener("click", () => {
-  if (recordBtn.textContent === "VR開始") {
+  if (recordBtn.textContent === "録画開始") {
     startRecording();
   } else {
     stopRecording();
-    recordBtn.textContent = "VR開始";
+    recordBtn.textContent = "録画開始";
     playBtn.disabled = false;
     downloadBtn.disabled = false;
   }

@@ -15,21 +15,56 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="container" class="wrapper">
-
-    <video id="local" autoplay playsinline="true" muted></video>
-    <video id="recorded" playsinline loop></video>
-    <div id="arVideo"><p>ここにVR表示</p></div>
-
-    <div class="buttons">
-      <button id="record" disabled>VR開始</button>
+  <!-- A-Frame ライブラリの読み込み -->
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <!-- AR.js ライブラリの読み込み -->
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+       <div class="buttons">
+      <button id="record" disabled>録画開始</button>
       <button id="play" disabled>インカメ再生</button>
       <button id="download" disabled>ダウンロード</button>
     </div>
+<!--    <div id="container" class="wrapper">-->
 
+    <video id="local" autoplay playsinline="true" muted></video>
+    <video id="recorded" playsinline loop></video>
+<!--    <div id="arVideo">-->
+
+
+    <!-- A-Frame の VR空間に AR.js を紐づける（デバッグUIを非表示） -->
+    <a-scene embedded arjs="debugUIEnabled:false;">
+  
+    <!-- OBJ形式のCGモデルの読み込み -->
+    <a-assets>
+      <a-asset-item id="obj" src="12221_Cat_v1_l3.obj"></a-asset-item>   <!-- objファイル -->
+      <a-asset-item id="mtl" src="12221_Cat_v1_l3.mtl"></a-asset-item>   <!-- mtlファイル -->
+    </a-assets>
+
+        
+    <!-- マーカーを登録（プリセットされている「ひろ」マーカー） -->
+    <a-marker preset="hiro">
+      <!-- マーカーの場所に OBJ 形式の 3DCG を置く -->
+      <a-obj-model
+        src="#obj"
+        mtl="#mtl"
+        rotation="-90 0 0"
+        scale="0.05 0.05 0.05"
+        position="0 0.5 0">
+      </a-obj-model>
+    </a-marker>
+
+      <!-- AR用のカメラを置く -->
+      <a-entity camera></a-entity>
+  
+    </a-scene>
+<!--    </div>-->
+
+
+
+<!--  </div>-->
   <!-- include adapter for srcObject shim -->
   <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
   <script src="./index.js" async></script>
-  </div>
+
 </body>
 </html>

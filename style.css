@@ -6,13 +6,16 @@ body {
   height: 100%;
   margin: 0 auto;
 }
+/*
 .wrapper {
   width: 100%;
   height: 100%;
   background: #000;
   position: relative;
 }
+*/
 video {
+  top: 20px;
   width: 100%;
   max-width: 100%;
   height: 100%;
@@ -36,4 +39,6 @@ video {
 }
 .buttons{
     position:fixed;
+    z-index: 1;
+    left:100px;
 }
